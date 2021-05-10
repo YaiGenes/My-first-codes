@@ -1,0 +1,150 @@
+<!---Bash_TEMPERATURE---->
+
+#Write a Bash script called temperature.sh that:
+#read in a command line argument into a variable called temperature
+#has a variable called min and give it a variable of 10
+#has a variable called max and give it a variable of 30
+#returns “Too hot!” if temperature is greater than max_temperature
+#returns “Too cold!” if temperature is less than min_temperature
+#returns “Just right!” if temperature is greater than or equal to the min_temperature and less than or equal to the max_temperature
+
+
+#!/usr/bin/env bash
+
+#1-Read the command line argument into a variable called temperature
+
+#Show to the user the request
+
+echo "Please introduce the temperature"
+
+#Read the user input
+
+read temperature
+
+#Create thresholds of temperatures
+
+min=10
+
+ma=30
+
+#Conditionals
+
+if [[ ${temperature} -gt ${ma} ]]
+
+then
+
+echo "too_hot"
+
+elif [[ ${temperature} -lt ${min} ]]
+
+then
+
+echo "too_cold"
+
+elif [[ ${temperature} == ${min} ]] || [[ ${temperature} -gt ${min} ]] && [[ ${temperature} == ${ma} ]] || [[ ${temperature} -lt ${ma} ]]
+
+then
+
+echo "Good"
+
+fi
+
+
+<!---Bash_ANIMAL_SOUNDS---->
+
+#Create a Bash script called farm.sh that uses a case statement to perform the following functions:
+#Stores a command line argument in a variable called animal
+#Use a case switch statement which has the following conditions and responses
+#When the user enters cow, return “Here, moo”
+#When the user enters sheep, return “There a baa”
+#When the user enters duck, return “Everywhere a quack”
+#Otherwise, return “Old MacDonald had a farm”
+
+
+#!/usr/bin/env bash
+
+#Show message to introduce a value associated with the variable ANIMAL
+
+echo "Introduce animal and you will get the sound"
+
+#Store the introduced value in the variable ANIMAL
+
+read animal
+
+#Compare the introduced value with the variable cases and return the string associated
+
+case $animal in
+
+cow)
+
+echo "Here, moo"
+
+;;
+
+sheep)
+
+echo "There a baa"
+
+;;
+
+duck)
+
+echo "Everywhere a quack"
+
+;;
+
+dog)
+
+echo "Uy, there are barks"
+
+;;
+
+*)
+
+echo "Old McDonald had a farm"
+
+esac
+
+
+
+<!---Bash_DIAMONDS---->
+
+#For this exercise, what we’d like you to do is create an interactive Bash script called diamonds.sh.
+#First, prompt the user to provide a cut and store their response in a variable called quality.
+#If the user enters either Fair or Good, return Insufficient quality to proceed.
+#If the user enters a value other than Premium, Ideal or Very Good, return Invalid cut.
+#Otherwise, count the number of diamonds (rows) which have the user-defined cut. Hint: look at the usage for grep to find an option that will count the number of lines which match a given pattern.
+
+
+
+#!/usr/bin/env bash
+
+#Request to the user for diamond quality cut
+
+echo "Please, enter a diamond quality cut"
+
+#Read and store the input in a variable called quality
+
+read quality
+
+#If the input is equal to Good or Fair, then returns "Insufficient quality to proceed"
+
+if [[ ${quality} == "Fair" ]] || [[ ${quality} == "Good" ]]
+
+then
+
+echo "Insufficient quality to proceed"
+
+#If the input is different to Ideal, Very Good or Premium, return "Invalind cut"
+
+elif [[ ${quality} != "Ideal" ]] && [[ ${quality} != "Very Good" ]] && [[ ${quality} != "Premium" ]]
+
+then
+
+echo "Invalid cut"
+
+#Otherwise, return number of diamonds from valid input
+
+else
+
+grep -c "${quality}" Diamonds.csv
